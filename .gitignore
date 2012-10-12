@@ -10,3 +10,13 @@
 *.lai
 *.la
 *.a
+
+# Vim Temp
+*~
+*.swp
+
+# Qt Compiled files
+/*-build-*
+
+# Qt Project User Config
+*.pro.user
