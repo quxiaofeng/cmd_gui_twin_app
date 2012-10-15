@@ -3,7 +3,7 @@
 
 
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(QWidget *parent, QString fileName) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -21,6 +21,28 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->doubleSpinBox_vd->setValue(roc_extractor.verticalDis);
     ui->doubleSpinBox_h->setValue(roc_extractor.height);
     ui->doubleSpinBox_w->setValue(roc_extractor.width);
+
+    if (fileName.isNull()) return;
+    image = cv::imread(fileName.toAscii().data());
+    if (image.data) roc_extractor.setSrcImage(image);
+    else return;
+    ui->textBrowser_log->append(tr("image file: ")+fileName+tr(" loaded successfully"));
+    ui->pushButton_flip->setEnabled(true);
+
+    cv::Mat tempImage = image.clone();
+    cv::cvtColor(tempImage,tempImage,CV_BGR2RGB);
+    QImage img = QImage((const unsigned char*)(tempImage.data),
+                        tempImage.cols,
+                        tempImage.rows,
+                        QImage::Format_RGB888);
+    ui->label->setPixmap(QPixmap::fromImage(img));
+    tempImage.release();
+    ui->label->resize(ui->label->pixmap()->size());
+
+    if (opencvDispWindow) {
+        cv::namedWindow("Original Image", CV_GUI_NORMAL);
+        cv::imshow("Original Image", image);
+    }
 }
 
 MainWindow::~MainWindow()
