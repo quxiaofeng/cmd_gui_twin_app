@@ -7,7 +7,7 @@ start ..\roc_cmd-build-desktop-Qt_4_8_1_for_Desktop_-_MSVC2010__Qt_SDK____\relea
 :NoReleaseCmd
 
 if not exist ..\roc_cmd-build-desktop-Qt_4_8_1_for_Desktop_-_MSVC2010__Qt_SDK____\debug\roc_cmd.exe goto NoDebugCmd
-start ..\roc_cmd-build-desktop-Qt_4_8_1_for_Desktop_-_MSVC2010__Qt_SDK____\debug\roc_cmd.exe test2.png result\result2.bmp
+start ..\roc_cmd-build-desktop-Qt_4_8_1_for_Desktop_-_MSVC2010__Qt_SDK____\debug\roc_cmd.exe test2.png ..\test\result\result2.bmp
 start ..\roc_cmd-build-desktop-Qt_4_8_1_for_Desktop_-_MSVC2010__Qt_SDK____\debug\roc_cmd.exe test2.png result2.bmp
 start ..\roc_cmd-build-desktop-Qt_4_8_1_for_Desktop_-_MSVC2010__Qt_SDK____\debug\roc_cmd.exe test2.png
 start ..\roc_cmd-build-desktop-Qt_4_8_1_for_Desktop_-_MSVC2010__Qt_SDK____\debug\roc_cmd.exe test2.png result2.bmp result2.bmp2

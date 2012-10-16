@@ -4,6 +4,8 @@
 #include <QString>
 #include <QRegExp>
 #include <QTranslator>
+#include <QFileInfo>
+#include <QDir>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -31,6 +33,7 @@ int main(int argc, char *argv[])
 {
     //QCoreApplication a(argc, argv);
     const static bool debug = false;
+    QFileInfo dstFileInfo;
     switch (argc) {
     case 2:
     case 3:
@@ -50,7 +53,16 @@ int main(int argc, char *argv[])
         if (debug) {
             qDebug() << argv[2];
         }
-        cv::imwrite(argv[2],dstImage);
+        dstFileInfo = QFileInfo(argv[2]);
+        if (dstFileInfo.exists()){
+            cv::imwrite(argv[2],dstImage);
+        }
+        else if (dstFileInfo.absoluteDir().exists()) {
+            cv::imwrite(dstFileInfo.filePath().toAscii().data(),dstImage);
+        }
+        else if (dstFileInfo.dir().mkpath(dstFileInfo.absoluteDir().absolutePath())) {
+            cv::imwrite(dstFileInfo.filePath().toAscii().data(),dstImage);
+        }
         break;
     case 2:
         QRegExp rxImageName("(?=.+)\\.(?=(bmp|dib|jpeg|jpg|jpe|jp2|png|pbm|pgm|ppm|sr|ras|tiff|tif)$)");
