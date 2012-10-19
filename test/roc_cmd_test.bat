@@ -1,4 +1,4 @@
-set path=..\qt;%PATH%
+set path=..\qt\bin;%PATH%
 if not exist ..\roc_cmd-build-desktop-Qt_4_8_1_for_Desktop_-_MSVC2010__Qt_SDK____\release\roc_cmd.exe goto NoReleaseCmd
 start ..\roc_cmd-build-desktop-Qt_4_8_1_for_Desktop_-_MSVC2010__Qt_SDK____\release\roc_cmd.exe test1.png result\result1.bmp
 start ..\roc_cmd-build-desktop-Qt_4_8_1_for_Desktop_-_MSVC2010__Qt_SDK____\release\roc_cmd.exe test1.png result1.bmp
